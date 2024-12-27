@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function extractTime(dateString: any) {
 	const currentDate = new Date();
 	const date = new Date(dateString);

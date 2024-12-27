@@ -22,7 +22,7 @@ const ReactToolTip: React.FC<ReactToolTipProps> = ({
 	isDom,
 	widthRef = 0,
 }) => {
-	let newPosition = position === 'right' ? 'left' : 'right';
+	const newPosition = position === 'right' ? 'left' : 'right';
 	const style: React.CSSProperties = {
 		[newPosition]: widthRef ? `${widthRef + 10}px` : '',
 	};

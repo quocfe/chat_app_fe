@@ -16,7 +16,7 @@ const ReplyBox = () => {
 		(state: RootState) => state.conversation.selectedConversation
 	);
 
-	let userReply =
+	const userReply =
 		messagesSelect?.senderId != auth._id
 			? selectedConversation?.fullName.split(' ').pop()
 			: 'chính mình';

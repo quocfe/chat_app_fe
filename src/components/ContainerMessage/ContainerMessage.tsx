@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { TiMessages } from 'react-icons/ti';
 import { useSelector } from 'react-redux';
 import { useSocketContext } from '../../context/SocketContext';

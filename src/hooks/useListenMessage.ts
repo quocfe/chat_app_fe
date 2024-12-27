@@ -50,9 +50,9 @@ const useListenMessage = () => {
 
 		(socket as Socket | null)?.on('newReactMessage', (newReactMessage: any) => {
 			console.log('newReactMessage socket');
-			let isDelete = data.some((item) => item._id === newReactMessage._id);
+			const isDelete = data.some((item) => item._id === newReactMessage._id);
 			if (isDelete) {
-				let datapop = data.filter((item) => item._id != newReactMessage._id);
+				const datapop = data.filter((item) => item._id != newReactMessage._id);
 				dispatch(setEmojis(datapop));
 			} else {
 				dispatch(setEmojis([...data, newReactMessage]));

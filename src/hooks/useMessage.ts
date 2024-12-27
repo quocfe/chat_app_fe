@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/reducer';
+import { useDispatch } from 'react-redux';
 import {
 	setMessages,
 	startSendMessage,
@@ -25,7 +24,7 @@ const useMessage = () => {
 	const sendMessage = async (id: string, message: string) => {
 		try {
 			dispatch(startSendMessage());
-			const res = await messageApi.sendMessageApi(id, message);
+			await messageApi.sendMessageApi(id, message);
 			dispatch(successSendMessage());
 		} catch (error) {
 			console.log('error', error);
@@ -35,7 +34,7 @@ const useMessage = () => {
 	const unSendMessage = async (messageId: string, statusUnSend: string) => {
 		try {
 			dispatch(startSendMessage());
-			const res = await messageApi.unSendMessageApi(messageId, statusUnSend);
+			await messageApi.unSendMessageApi(messageId, statusUnSend);
 			dispatch(successSendMessage());
 		} catch (error) {
 			console.log('error', error);

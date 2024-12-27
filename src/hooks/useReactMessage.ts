@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
+import { setEmojis, stateEmojis } from '../redux/slice/ReactMessageSlice';
 import { reactmessageApi } from '../service';
-import { stateEmojis, setEmojis } from '../redux/slice/ReactMessageSlice';
 
 const useReactMessage = () => {
 	const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const useReactMessage = () => {
 		}
 	};
 
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	const updateReactMessage = async (reactMessageId: string, emoji: {}) => {
 		try {
 			const res = await reactmessageApi.updateReactMessage(

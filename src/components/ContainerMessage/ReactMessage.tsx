@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 function ReactMessage({ fromMe, reactMessage }: any) {
 	const positonClassName = fromMe ? 'right-[70%]' : 'left-[70%]';
 

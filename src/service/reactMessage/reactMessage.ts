@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ApiEndPoint } from '../../constant/ApiEndPoint';
 import axiosRoute from '../config';
 
@@ -25,6 +26,7 @@ export const reactmessageApi = {
 		}
 	},
 
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	async updateReactMessage(reactMessageId: string, emoji: {}) {
 		try {
 			const res = await axiosRoute.put(

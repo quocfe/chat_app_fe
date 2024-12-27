@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MdReply } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';
@@ -15,7 +16,7 @@ const ReplyMessage = ({ fromMe, replyMessage }: any) => {
 			? `${selectedConversation?.fullName.split(' ').pop()} đã trả lời bạn`
 			: `Bạn đã trả lời ${selectedConversation?.fullName.split(' ').pop()}`;
 
-	let check: any = messages.find(
+	const check: any = messages.find(
 		(item: any) => item?._id === replyMessage?.oldMessage
 	);
 
