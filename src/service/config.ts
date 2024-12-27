@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosRoute = axios.create({
-	baseURL: 'http://localhost:3000/api/',
+	baseURL: 'https://chat-app-be-xi.vercel.app/api/',
 });
 
 axiosRoute.interceptors.request.use(

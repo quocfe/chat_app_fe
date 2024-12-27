@@ -1,9 +1,9 @@
 import { IFApiEndPoint } from '../models/ApiEndPoint';
 
 export const ApiEndPoint: IFApiEndPoint = {
-	auth: 'http://localhost:8800/api/auth',
-	message: 'http://localhost:8800/api/message',
-	replymessage: 'http://localhost:8800/api/replymessage',
-	reactmessage: 'http://localhost:8800/api/reactmessage',
-	users: 'http://localhost:8800/api/users',
+	auth: 'https://chat-app-be-xi.vercel.app/api//api/auth',
+	message: 'https://chat-app-be-xi.vercel.app/api//api/message',
+	replymessage: 'https://chat-app-be-xi.vercel.app/api//api/replymessage',
+	reactmessage: 'https://chat-app-be-xi.vercel.app/api//api/reactmessage',
+	users: 'https://chat-app-be-xi.vercel.app/api//api/users',
 };
