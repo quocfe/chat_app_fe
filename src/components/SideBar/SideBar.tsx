@@ -25,7 +25,7 @@ const SideBar = ({ isSidebarOpen }: any) => {
 			try {
 				const res = await getUsersInSideBar();
 				const arrLastMessage = await getLastMessage(res.data);
-				setLastMessages(arrLastMessage);
+				setLastMessages(arrLastMessage as []);
 				setUsers(res.data);
 			} catch (error) {
 				console.log(error);
