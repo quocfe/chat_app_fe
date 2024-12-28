@@ -40,7 +40,7 @@ export const SocketContextProvider: React.FC<SocketContextProviderProps> = ({
 
 	useEffect(() => {
 		if (authUser._id) {
-			const newSocket = io('https://chat-app-be-xi.vercel.app', {
+			const newSocket = io('https://chat-app-be-17fu.onrender.com', {
 				query: {
 					userId: authUser._id,
 				},

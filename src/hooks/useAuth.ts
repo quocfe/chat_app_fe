@@ -24,7 +24,7 @@ const useAuth = () => {
 				dispatch(loginSuccess(res.data));
 				localStorage.setItem('token', JSON.stringify(res.data.token));
 				navigate('/');
-			} else if (res.status === 400) {
+			} else if (res?.status === 400) {
 				dispatch(loginFailed(res.data.error));
 			}
 		} catch (error) {
