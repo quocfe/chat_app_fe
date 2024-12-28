@@ -16,6 +16,7 @@ const useAuth = () => {
 	const navigate = useNavigate();
 
 	const logIn = async (data: any) => {
+		console.log('login action');
 		dispatch(startLogin());
 		try {
 			const res = await authApi.Login(data);

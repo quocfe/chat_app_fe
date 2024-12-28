@@ -1,17 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Socket } from 'socket.io-client';
+import { useMessage } from '.';
 import { useSocketContext } from '../context/SocketContext';
 import { RootState } from '../redux/reducer';
 import { setMessages } from '../redux/slice/ConversationSlice';
-import { Socket } from 'socket.io-client';
-import { useMessage, useReplyMessage } from '.';
 import { setEmojis } from '../redux/slice/ReactMessageSlice';
 
 const useListenMessage = () => {
 	const dispatch = useDispatch();
 	const { sendMessage } = useMessage();
-	const { getReplyMessages } = useReplyMessage();
-	getReplyMessages();
 
 	const { messages, selectedConversation: userSelect } = useSelector(
 		(state: RootState) => state.conversation

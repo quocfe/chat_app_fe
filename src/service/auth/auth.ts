@@ -1,13 +1,16 @@
 import { ApiEndPoint } from '../../constant/ApiEndPoint';
-import axiosRoute from '../config';
+import axiosInstance from '../config';
 
 export const authApi = {
 	async Login(params: any) {
+		console.log('Login api');
 		try {
-			const res = await axiosRoute.post(`${ApiEndPoint.auth}/login`, {
+			const res = await axiosInstance.post(`${ApiEndPoint.auth}/login`, {
 				username: params.username,
 				password: params.password,
 			});
+
+			console.log('ress', res);
 			if (res.status === 200) {
 				return res;
 			}
@@ -17,7 +20,7 @@ export const authApi = {
 	},
 	async Signup(params: any) {
 		try {
-			const res = await axiosRoute.post(`${ApiEndPoint.auth}/signup`, {
+			const res = await axiosInstance.post(`${ApiEndPoint.auth}/signup`, {
 				fullName: params.fullName,
 				username: params.username,
 				password: params.password,

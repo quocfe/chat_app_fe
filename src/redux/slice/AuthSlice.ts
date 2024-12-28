@@ -32,16 +32,19 @@ const authSlice = createSlice({
 		startLogin(state) {
 			state.loading = true;
 			state.error = null;
+			console.log('startLogin');
 		},
 		loginSuccess(state, action: PayloadAction<any>) {
 			state.loading = false;
 			state.user = action.payload;
 			state.error = null;
+			console.log('loginSuccess');
 		},
 		loginFailed(state, action: PayloadAction<any>) {
 			state.loading = false;
 			state.user = null;
 			state.error = action.payload;
+			console.log('loginFailed');
 		},
 		logOutSuccess(state) {
 			state.loading = false;

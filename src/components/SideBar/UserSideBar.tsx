@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Socket } from 'socket.io-client';
 import { useSocketContext } from '../../context/SocketContext';
+import { useReactMessage, useUser } from '../../hooks';
 import useMessage from '../../hooks/useMessage';
 import { IFMessage } from '../../models/message';
 import { IFUserInSideBar } from '../../models/userInSideBar';
 import { RootState } from '../../redux/reducer';
-import { useReactMessage, useUser } from '../../hooks';
 
 interface Props {
 	user: IFUserInSideBar;
@@ -36,7 +36,7 @@ const UserSideBar: React.FC<Props> = ({ user, handleClick, msg }) => {
 		const fetchData = async () => {
 			if (userSelected?._id) {
 				await getMessage(userSelected?._id);
-				await getReactMessage();
+				// await getReactMessage();
 			}
 		};
 		fetchData();

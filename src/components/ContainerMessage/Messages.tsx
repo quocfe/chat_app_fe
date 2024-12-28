@@ -1,14 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import useListenMessage from '../../hooks/useListenMessage';
-import useReplyMessage from '../../hooks/useReplyMessage';
 import { IFMessage } from '../../models/message';
 import { RootState } from '../../redux/reducer';
 import Message from './Message';
 
 const Messages = () => {
 	useListenMessage();
-	const { getReplyMessages } = useReplyMessage();
 
 	const lastMsgRef = useRef<HTMLDivElement | null>(null);
 	const messages = useSelector(
@@ -18,12 +16,6 @@ const Messages = () => {
 	useEffect(() => {
 		lastMsgRef.current?.scrollIntoView({ behavior: 'smooth' });
 	}, [messages]);
-
-	useEffect(() => {
-		(async () => {
-			await getReplyMessages();
-		})();
-	}, []);
 
 	return (
 		<div className="flex-1 p-2 mb-6 overflow-y-scroll">
