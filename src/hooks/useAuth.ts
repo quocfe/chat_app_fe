@@ -19,7 +19,7 @@ const useAuth = () => {
 		dispatch(startLogin());
 		try {
 			const res = await authApi.Login(data);
-
+			console.log('res', res);
 			if (res.status === 200) {
 				dispatch(loginSuccess(res.data));
 				localStorage.setItem('token', JSON.stringify(res.data.token));
