@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ApiEndPoint } from '../../constant/ApiEndPoint';
-import axiosRoute from '../config';
+import http from '../config';
 
 export const replymessageApi = {
 	async getReplyMessagesApi() {
 		try {
-			const res = await axiosRoute.get(`${ApiEndPoint.replymessage}`);
+			const res = await http.get(`${ApiEndPoint.replymessage}`);
 			return res;
 		} catch (error: any) {
 			return error.response;
@@ -17,7 +17,7 @@ export const replymessageApi = {
 		replyMessage: string
 	) {
 		try {
-			const res = await axiosRoute.post(
+			const res = await http.post(
 				`${ApiEndPoint.replymessage}/reply/${messageId}`,
 				{
 					receiverId,

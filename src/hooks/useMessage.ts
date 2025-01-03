@@ -13,9 +13,7 @@ const useMessage = () => {
 	const getMessage = async (id: string) => {
 		try {
 			const res = await messageApi.getMessageApi(id);
-			if (res.status === 200) {
-				dispatch(setMessages(res.data));
-			}
+			dispatch(setMessages(res));
 		} catch (error) {
 			console.log('error', error);
 		}

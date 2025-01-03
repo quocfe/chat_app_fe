@@ -5,7 +5,8 @@ async function getLastMessage(users: IFUserInSideBar[]) {
 	try {
 		const promises = users.map(async (user) => {
 			const res = await messageApi.getMessageApi(user._id);
-			return res.data[res.data.length - 1];
+
+			return res[res?.length - 1];
 		});
 
 		const lastMessages = await Promise.all(promises);

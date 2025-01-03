@@ -90,7 +90,7 @@ const Message = ({ message }: any) => {
 						{message.replyMessage || message.message}
 					</p>
 				</ReactToolTip>
-				{reactMessage.length !== 0 && (
+				{reactMessage?.length !== 0 && (
 					<ReactMessage
 						fromMe={fromMe}
 						id={message._id}

@@ -16,20 +16,14 @@ const useAuth = () => {
 	const navigate = useNavigate();
 
 	const logIn = async (data: any) => {
-		console.log('login action');
 		dispatch(startLogin());
 		try {
 			const res = await authApi.Login(data);
-			console.log('res', res);
-			if (res.status === 200) {
-				dispatch(loginSuccess(res.data));
-				localStorage.setItem('token', JSON.stringify(res.data.token));
-				navigate('/');
-			} else {
-				dispatch(loginFailed(res.data.error));
-			}
+			dispatch(loginSuccess(res));
+			localStorage.setItem('token', JSON.stringify(res.token));
+			navigate('/');
 		} catch (error) {
-			console.log('error', error);
+			dispatch(loginFailed(error));
 		}
 	};
 

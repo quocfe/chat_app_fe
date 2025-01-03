@@ -24,9 +24,9 @@ const SideBar = ({ isSidebarOpen }: any) => {
 		const fetchData = async () => {
 			try {
 				const res = await getUsersInSideBar();
-				const arrLastMessage = await getLastMessage(res.data);
+				const arrLastMessage = await getLastMessage(res);
 				setLastMessages(arrLastMessage as []);
-				setUsers(res.data);
+				setUsers(res);
 			} catch (error) {
 				console.log(error);
 			}

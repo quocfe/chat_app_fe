@@ -1,31 +1,58 @@
-import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const axiosInstance = axios.create({
-	baseURL: 'https://chat-app-be-17fu.onrender.com/api/',
-});
+const baseURL = 'https://chat-app-be-17fu.onrender.com/api/';
 
-axiosInstance.interceptors.request.use(
-	(config) => {
-		const tokenInLocal: string | null = localStorage.getItem('token');
-		if (tokenInLocal !== null) {
-			const accessToken: string = JSON.parse(tokenInLocal);
-			config.headers.Authorization = `Bearer ${accessToken}`;
+const httpRequest = async (
+	endpoint: string,
+	options: RequestInit = {}
+): Promise<any> => {
+	const tokenInLocal = localStorage.getItem('token');
+	const headers: HeadersInit = {
+		'Content-Type': 'application/json',
+		...(tokenInLocal && {
+			Authorization: `Bearer ${JSON.parse(tokenInLocal)}`,
+		}),
+		...options.headers,
+	};
+
+	const config: RequestInit = {
+		...options,
+		headers,
+	};
+
+	try {
+		const response = await fetch(baseURL + endpoint, config);
+		// Kiểm tra lỗi HTTP status
+		if (!response.ok) {
+			const errorData = await response.json();
+			toast.error(errorData.error || 'Something went wrong');
 		}
-
-		return config;
-	},
-	(error) => {
-		return Promise.reject(error);
+		// Trả về dữ liệu JSON
+		return response.json();
+	} catch (error) {
+		console.error('HTTP Request Error:', error);
 	}
-);
+};
 
-axiosInstance.interceptors.response.use(
-	(response) => {
-		return response;
+const http = {
+	get: async (endpoint: string) => {
+		return await httpRequest(endpoint, { method: 'GET' });
 	},
-	async (error) => {
-		return Promise.reject(error);
-	}
-);
+	post: async (endpoint: string, body: any) => {
+		return await httpRequest(endpoint, {
+			method: 'POST',
+			body: JSON.stringify(body),
+		});
+	},
+	put: async (endpoint: string, body: any) => {
+		return await httpRequest(endpoint, {
+			method: 'PUT',
+			body: JSON.stringify(body),
+		});
+	},
+	delete: async (endpoint: string) => {
+		return await httpRequest(endpoint, { method: 'DELETE' });
+	},
+};
 
-export default axiosInstance;
+export default http;

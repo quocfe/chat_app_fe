@@ -11,9 +11,7 @@ const useReplyMessage = () => {
 	const getReplyMessages = async () => {
 		try {
 			const res = await replymessageApi.getReplyMessagesApi();
-			if (res.status === 200) {
-				dispatch(setReplyMessage(res.data));
-			}
+			dispatch(setReplyMessage(res));
 		} catch (error) {
 			console.log('error', error);
 		}
@@ -30,9 +28,7 @@ const useReplyMessage = () => {
 				receiverId,
 				replyMessage
 			);
-			if (res.status === 200) {
-				dispatch(setMessages([...messages, res.data]));
-			}
+			dispatch(setMessages([...messages, res]));
 		} catch (error) {
 			console.log('error', error);
 		}

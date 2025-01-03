@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ApiEndPoint } from '../../constant/ApiEndPoint';
-import axiosRoute from '../config';
+import http from '../config';
 
 export const messageApi = {
 	async getMessageApi(id: string) {
 		try {
-			const res = await axiosRoute.get(`${ApiEndPoint.message}/${id}`);
+			const res = await http.get(`${ApiEndPoint.message}/${id}`);
 
 			return res;
 		} catch (error: any) {
@@ -14,7 +14,7 @@ export const messageApi = {
 	},
 	async sendMessageApi(id: string, message: string) {
 		try {
-			const res = await axiosRoute.post(`${ApiEndPoint.message}/send/${id}`, {
+			const res = await http.post(`${ApiEndPoint.message}/send/${id}`, {
 				message,
 			});
 			return res;
@@ -24,7 +24,7 @@ export const messageApi = {
 	},
 	async unSendMessageApi(messageId: string, statusUnSend: string) {
 		try {
-			const res = await axiosRoute.post(
+			const res = await http.post(
 				`${ApiEndPoint.message}/unSend/${messageId}`,
 				{ statusUnSend }
 			);

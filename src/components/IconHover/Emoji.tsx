@@ -39,36 +39,43 @@ const Emoji = ({ message }: any) => {
 	const reactMessage = useSelector(
 		(state: RootState) => state.reactMessage.data
 	);
-	const checkAuth = reactMessage.filter(
+
+	const checkAuth = reactMessage?.filter(
 		(item: IFReactMessage) => item.senderId === auth._id
 	);
-	const checkMessage = checkAuth.filter(
+	const checkMessage = checkAuth?.filter(
 		(item: IFReactMessage) => item.messageId == message._id
 	);
 
 	const handleClickEmoji = (emojiSrc: string) => {
-		if (checkAuth.length === 0 || checkMessage[0]?.messageId != message._id) {
+		console.log(checkAuth);
+		if (
+			checkAuth?.length === undefined ||
+			(checkMessage && checkMessage[0]?.messageId === undefined)
+		) {
 			setReactMessage(message._id, emojiSrc);
 			console.log('add');
-		} else if (checkMessage[0].emoji !== emojiSrc) {
+		} else if (checkMessage && checkMessage[0]?.emoji !== emojiSrc) {
 			const data = {
 				emoji: emojiSrc,
 			};
-			updateReactMessage(checkMessage[0]?._id, data);
+			updateReactMessage(checkMessage && checkMessage[0]?._id, data);
 			console.log('update');
 		} else {
 			console.log('delete');
-			deleteReactMessage(checkMessage[0]?._id);
+			deleteReactMessage(checkMessage && checkMessage[0]?._id);
 		}
 	};
 
 	return (
 		<div className="class-before flex gap-2 items-center justify-around absolute w-[300px] bottom-[50px]  px-4 py-3 shadow shadow-shadow_2 rounded-full bg-primary">
-			{EmojiArr.map((emoji, index) => (
+			{EmojiArr?.map((emoji, index) => (
 				<span
 					key={index}
 					className={`rounded-full shadow cursor-pointer ${
-						checkAuth.length != 0 && checkMessage[0]?.messageId === message._id
+						checkAuth?.length != 0 &&
+						checkMessage &&
+						checkMessage[0]?.messageId === message._id
 							? checkMessage[0]?.emoji === emoji.src
 								? 'shadow-shadow_1 p-2'
 								: ''

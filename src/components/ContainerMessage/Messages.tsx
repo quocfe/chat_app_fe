@@ -9,9 +9,7 @@ const Messages = () => {
 	useListenMessage();
 
 	const lastMsgRef = useRef<HTMLDivElement | null>(null);
-	const messages = useSelector(
-		(state: RootState) => state.conversation.messages
-	);
+	const { messages } = useSelector((state: RootState) => state.conversation);
 
 	useEffect(() => {
 		lastMsgRef.current?.scrollIntoView({ behavior: 'smooth' });

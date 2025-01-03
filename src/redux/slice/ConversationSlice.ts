@@ -5,12 +5,14 @@ interface conversationState {
 	selectedConversation: IFUserInSideBar | null;
 	messages: [];
 	loading: boolean;
+	loadingConversation: boolean;
 }
 
 const initialState: conversationState = {
 	selectedConversation: null,
 	messages: [],
 	loading: false,
+	loadingConversation: false,
 };
 
 const ConversationSlice = createSlice({
@@ -18,7 +20,9 @@ const ConversationSlice = createSlice({
 	initialState,
 	reducers: {
 		setSelectedConversation: (state, action) => {
+			state.loadingConversation = true;
 			state.selectedConversation = action.payload;
+			state.loadingConversation = false;
 		},
 		setMessages: (state, action) => {
 			state.messages = action.payload;

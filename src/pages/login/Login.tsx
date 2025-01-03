@@ -25,7 +25,7 @@ const Login = () => {
 		await logIn(data);
 	};
 
-	const { error } = useSelector((state: RootState) => state.auth);
+	const { error, loading } = useSelector((state: RootState) => state.auth);
 
 	useEffect(() => {
 		toast.error(error, {
@@ -59,10 +59,13 @@ const Login = () => {
 				<div className="flex flex-col items-center justify-center mx-auto w-[550px] ">
 					<div className="w-full p-6 rounded-lg shadow-md ">
 						<h1 className="text-3xl font-semibold text-center text-gray-300">
-							Login
-							<span className="text-blue-500">ChatApp</span>
+							<span className="text-blue-500">Login</span>
 						</h1>
-
+						<div className="text-center mt-3">
+							<p>Account demo</p>
+							<p>username: user1 - user2 - user3</p>
+							<p> password: 123123123</p>
+						</div>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div>
 								<label className="p-2 label">
@@ -70,7 +73,7 @@ const Login = () => {
 								</label>
 								<input
 									type="text"
-									placeholder="Enter username"
+									placeholder="Username"
 									className="w-full h-10 input input-bordered"
 									{...register('username', {
 										required: 'Username is required',
@@ -89,7 +92,7 @@ const Login = () => {
 								</label>
 								<input
 									type="password"
-									placeholder="Enter Password"
+									placeholder="Password"
 									className="w-full h-10 input input-bordered"
 									{...register('password', {
 										required: 'Password is required',
@@ -111,10 +114,15 @@ const Login = () => {
 							>
 								{"Don't"} have an account?
 							</Link>
-
-							<div>
-								<button className="mt-2 btn btn-block btn-xl">Login</button>
-							</div>
+							{loading ? (
+								<div>
+									<p className="mt-2 btn btn-block btn-xl">Loading...</p>
+								</div>
+							) : (
+								<div>
+									<button className="mt-2 btn btn-block btn-xl">Login</button>
+								</div>
+							)}
 						</form>
 					</div>
 				</div>

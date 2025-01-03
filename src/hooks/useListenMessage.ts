@@ -48,12 +48,13 @@ const useListenMessage = () => {
 
 		(socket as Socket | null)?.on('newReactMessage', (newReactMessage: any) => {
 			console.log('newReactMessage socket');
-			const isDelete = data.some((item) => item._id === newReactMessage._id);
+			const isDelete = data?.some((item) => item._id === newReactMessage._id);
 			if (isDelete) {
-				const datapop = data.filter((item) => item._id != newReactMessage._id);
+				const datapop = data?.filter((item) => item._id != newReactMessage._id);
 				dispatch(setEmojis(datapop));
 			} else {
-				dispatch(setEmojis([...data, newReactMessage]));
+				console.log(newReactMessage);
+				dispatch(setEmojis([newReactMessage]));
 			}
 		});
 
